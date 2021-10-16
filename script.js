@@ -1,7 +1,9 @@
 const randomButton = document.querySelector(".random");
 const copyButton = document.querySelector(".copy");
 const textarea = document.querySelector("textarea");
+
 let style = "";
+
 const blendModes = [
   "normal",
   "multiply",
@@ -12,6 +14,7 @@ const blendModes = [
   "soft-light",
   "hue",
   "color"];
+
 function generateGradient(){
   let gradient = "",
     mode = "";
@@ -30,13 +33,16 @@ function generateGradient(){
     });
     const firstSpread = Math.floor(Math.random() * 90);
     const lastSpread = Math.floor(Math.random() * 180);
+
     mode += `${blendModes[Math.floor(Math.random() * blendModes.length)]},`;
     gradient += `linear-gradient(${deg}deg, ${firstColor} ${firstSpread}%, ${lastColor} ${lastSpread}%),`;
   }
   style = `background-image: ${gradient.slice(0, -1)}; background-blend-mode: ${mode.slice(0, -1)};`;
   document.body.setAttribute("style", style);
 }
+
 generateGradient();
+
 randomButton.addEventListener("click", generateGradient);
 copyButton.addEventListener("click", ()=>{
   textarea.value = style;
